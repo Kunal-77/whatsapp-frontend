@@ -1,113 +1,182 @@
-/* General Layout */
-.app {
+/* --- Global Styles & Font --- */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f2f5;
+}
+
+/* --- Main App Container --- */
+.whatsapp-clone {
   display: flex;
+  width: 100vw;
   height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #eae6df;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.06);
 }
 
-/* Sidebar */
+/* --- Sidebar (Left Panel) --- */
 .sidebar {
-  width: 25%;
-  background: #f8f9fa;
-  border-right: 1px solid #ccc;
+  flex: 0 0 30%;
+  max-width: 400px;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
+  border-right: 1px solid #d1d7db;
+  overflow-y: auto;
 }
 
-.sidebar .title {
-  padding: 1rem;
-  font-size: 1.2rem;
+/* --- Chats Header (WhatsApp green bar at top of sidebar) --- */
+.sidebar-header {
+  background-color: #00a884;
+  padding: 18px 20px;
+  color: #fff;
+  font-size: 1.5em;
   font-weight: bold;
-  background: #00a884;
-  color: white;
-  text-align: center;
+  border-bottom: 1px solid #07956b;
+  margin: 0;
+  letter-spacing: 0.02em;
 }
 
-.chat-item {
-  padding: 15px;
-  border-bottom: 1px solid #eee;
+/* --- Individual Chat in Sidebar --- */
+.sidebar-chat {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f2f5;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
-.chat-item:hover {
-  background: #e2f1f8;
+.sidebar-chat:hover {
+  background-color: #f0f2f5;
 }
 
-/* Chat Window */
+.sidebar-chat.active {
+  background-color: #e9edef;
+}
+
+/* --- Chat info --- */
+.chat-name {
+  font-weight: 600;
+  margin: 0;
+  color: #111b21;
+}
+
+.chat-id {
+  font-size: 0.9em;
+  color: #667781;
+  margin: 4px 0 0;
+}
+
+/* --- Chat Window (Right Panel) --- */
 .chat-window {
-  width: 75%;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  background: #efeae2;
+  background-color: #e9edef;
+  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
 }
 
-.chat-header {
-  background: #f0f2f5;
-  padding: 1rem;
-  font-weight: bold;
-  border-bottom: 1px solid #ccc;
-  display: flex;
-  justify-content: space-between;
+/* --- Placeholder for when no chat is selected --- */
+.no-chat-selected {
+  margin: auto;
+  text-align: center;
+  color: #435460;
+  font-size: 1.2em;
+  background-color: #f0f2f5;
+  padding: 20px 40px;
+  border-radius: 8px;
 }
 
-.chat-messages {
+/* --- Messages Area --- */
+.messages-container {
   flex: 1;
-  padding: 1.2rem;
+  padding: 20px 5%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
-.chat-bubble {
-  max-width: 60%;
-  background: #dcf8c6;
-  padding: 10px 15px;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-  position: relative;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* --- Message Bubbles: All green like WhatsApp --- */
+.message-bubble {
+  max-width: 65%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #d9fdd3;
+  /* WhatsApp green */
+  align-self: flex-start;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  word-wrap: break-word;
 }
 
-.timestamp {
-  font-size: 0.75rem;
-  color: #555;
+.message-bubble.sent {
+  background-color: #d9fdd3;
+  /* WhatsApp green */
+  align-self: flex-end;
+}
+
+.message-bubble p {
+  margin: 0;
+}
+
+.message-time {
+  font-size: 0.75em;
+  color: #667781;
+  float: right;
   margin-top: 5px;
-  text-align: right;
+  margin-left: 10px;
 }
 
-/* Send Message Box */
-.chat-input {
+/* --- Message Input Form --- */
+.message-form {
   display: flex;
-  padding: 1rem;
-  background: #f0f0f0;
-  border-top: 1px solid #ccc;
+  padding: 10px 20px;
+  background-color: #f0f2f5;
+  border-top: 1px solid #d1d7db;
+  gap: 10px;
+  align-items: center;
 }
 
-.chat-input input {
+.message-form input {
   flex: 1;
-  padding: 12px;
+  padding: 12px 15px;
   border: none;
   border-radius: 20px;
-  outline: none;
-  font-size: 1rem;
-  background: white;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
 }
 
-.chat-input button {
-  margin-left: 10px;
-  padding: 10px 20px;
-  background: #00a884;
+.message-form button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  background-color: #00a884;
   color: white;
   font-weight: bold;
-  border: none;
-  border-radius: 20px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
-.chat-input button:hover {
-  background: #009174;
+.message-form button:hover {
+  background-color: #008a6e;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .sidebar {
+    flex: 1;
+    max-width: 100%;
+    min-width: 100%;
+    border-right: none;
+  }
+
+  .whatsapp-clone.chat-active .sidebar {
+    display: none;
+  }
+
+  .whatsapp-clone.chat-active .chat-window {
+    display: flex;
+  }
 }
